@@ -107,9 +107,40 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
     
 
         //TODO: Initialize the _mesh variable with a triangle mesh uploaded to the GPU.
+        std::vector<Mesh::Vertex> cpuVertexArray;  // VBO
+        std::vector<int> cpuIndexArray;  // Index list
+        std::vector<std::shared_ptr<Texture>> textures;
         
+        // Create our 3 vertexes
+        Mesh::Vertex vert0;
+        vert0.position = vec3(0, 0, 0);
+        vert0.normal = vec3(0, 0, 1);
+        vert0.texCoord0 = vec2(0, 0);
+        cpuVertexArray.push_back(vert0);
+        cpuIndexArray.push_back(0);
         
+        Mesh::Vertex vert1;
+        vert1.position = vec3(1, 0, 1);
+        vert1.normal = vec3(0, 0, 1);
+        vert1.texCoord0 = vec2(0, 1);
+        cpuVertexArray.push_back(vert1);
+        cpuIndexArray.push_back(1);
         
+        Mesh::Vertex vert2;
+        vert2.position = vec3(0, 0, 1);
+        vert2.normal = vec3(0, 0, 1);
+        vert2.texCoord0 = vec2(1, 1);
+        cpuVertexArray.push_back(vert2);
+        cpuIndexArray.push_back(2);
+        
+        // easy vers
+        const int numVertices = cpuVertexArray.size();
+        const int cpuVertexByteSize = sizeof(Mesh::Vertex) * numVertices;
+        const int cpuIndexByteSize = sizeof(int) * cpuIndexArray.size();
+        
+        _mesh.reset(new Mesh(textures, GL_TRIANGLE_STRIP, GL_STATIC_DRAW, cpuVertexByteSize, cpuIndexByteSize, 0, cpuVertexArray, cpuIndexArray.size(), cpuIndexByteSize, &cpuIndexArray[0]));
+        
+        _mesh->setMaterialColor(vec4(1));
     }
 }
 
