@@ -120,14 +120,14 @@ void ExampleApp::onRenderGraphicsContext(const VRGraphicsState &renderState) {
         cpuIndexArray.push_back(0);
         
         Mesh::Vertex vert1;
-        vert1.position = vec3(1, 0, 1);
+        vert1.position = vec3(1, 1, 0);
         vert1.normal = vec3(0, 0, 1);
         vert1.texCoord0 = vec2(0, 1);
         cpuVertexArray.push_back(vert1);
         cpuIndexArray.push_back(1);
         
         Mesh::Vertex vert2;
-        vert2.position = vec3(0, 0, 1);
+        vert2.position = vec3(0, 1, 0);
         vert2.normal = vec3(0, 0, 1);
         vert2.texCoord0 = vec2(1, 1);
         cpuVertexArray.push_back(vert2);
